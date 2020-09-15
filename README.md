@@ -1,7 +1,7 @@
 # teleop_pkg
 
 ## DESCRIPTION
-This ROS package works with teleop_app (). It manages different Android devices on which app is installed, receiving data from device via bluetooth and publishing on ROS topics.
+This ROS package works with teleop_app (https://github.com/aitronik/teleop_app). It manages different Android devices on which app is installed, receiving data from device via bluetooth and publishing on ROS topics.
 
 __If different devices want to connect to the same platform on which thi node is running, remember to assign them an increasing bluetooth channel number on app, starting from channel 1__
 
