@@ -7,7 +7,7 @@ __If different devices want to connect to the same platform on which thi node is
 
 For each connected device this pkg runs an istance of deviceManager class to handle its data. The collected data will be publish on following topics:
 
-1. `/status`, that report the actual device status depending on wich mode has been selected on app
+1. `/status`, that reports the actual device status depending on wich mode has been selected on app
 
 2. `/joystickCmd`, for manual control. Normalized axis values from app joystick widget or device accelerometers are published [-1, 1]
 
@@ -15,7 +15,17 @@ For each connected device this pkg runs an istance of deviceManager class to han
 
 4. `/orientation`, where current device roll, pitch and yaw angles are published
 
-Since each deviceManager instance publishes on these topics, each message has the device id stored on `msg.header.frame_id` in order to identify "who publish what". Only status message has id encoded in an uint8_t bitfield structured as follow:
+The message types on related topics are:
+
+1. `std_msgs::UInt8` for status message on topic `/status`
+
+2. `geometry_msgs::TwistStamped` for axis values on topic `/joystickCmd`
+
+3. `sensor_msgs::NavSatFix` for latitude and longitude on topic `/gps`
+
+4. `geometry_msgs::Vector3Stamped` for pose angles on topic `/orientation`
+
+Since each deviceManager instance publishes on these topics, each message has the device id stored on `msg.header.frame_id` in order to identify "who publishes what". Only status message has id encoded in an uint8_t bitfield structured as follow:
 
  * bit 0:   joystick/Accelerometers on/off
  * bit 1:   gps/orientation         on/off
